@@ -1,11 +1,23 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const annonceSchema = new Schema({
     // TODO: Définissez les champs du schéma ici, par exemple titre, prix, caractéristiques, etc.
-    title: String,
-    price: Number,
-    caracteristic: String,
+    titre: {
+        type: String,
+        required: true,
+        default: "Annonce sans titre",
+    },
+    price: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    caracteristics: {
+        type: String,
+        required: true,
+        default: "Pas de caractéristiques",
+    },
 });
 
 // l'etape de transformation du schema en modele sert a creer des instances de donnees
@@ -17,4 +29,4 @@ const annonceSchema = new Schema({
 // le nom du modele est important car il sera utilise pour creer la collection dans la base de donnees
 const Annonce = mongoose.model("Annonce", annonceSchema);
 
-export default Annonce;
+module.exports = Annonce;

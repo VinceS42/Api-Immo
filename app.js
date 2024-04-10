@@ -1,10 +1,7 @@
-import connectDatabase from "./config/database.js";
-import express from "express";
-import dotenv from "dotenv";
-import annonceRouter from "./routes/annonces.js";
-
-
-dotenv.config({ path: ".env" });
+const express = require("express");
+const connectDatabase = require("./config/database.js");
+require("dotenv").config();
+const annonceRouter = require("./routes/annonces.js");
 
 connectDatabase();
 const app = express();

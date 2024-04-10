@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const connectDatabase = async () => {
     // TODO: Connexion à la base de données MongoDB
@@ -14,4 +14,5 @@ const connectDatabase = async () => {
     }
 };
 
-export default connectDatabase;
+module.exports = connectDatabase;
+

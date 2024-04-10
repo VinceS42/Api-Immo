@@ -1,5 +1,5 @@
-import express from "express";
-import Annonce from "../models/Annonce.js";
+const express = require("express");
+const Annonce = require("../models/Annonce");
 const annonceRouter = express.Router();
 
 annonceRouter.get("/", async (req, res) => {
@@ -11,4 +11,4 @@ annonceRouter.get("/", async (req, res) => {
     }
 });
 
-export default annonceRouter;
+module.exports = annonceRouter;
