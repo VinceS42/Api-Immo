@@ -4,6 +4,8 @@ const { Schema } = mongoose;
 const annonceSchema = new Schema(
     {
         // TODO: Définissez les champs du schéma ici, par exemple titre, prix, caractéristiques, etc.
+        
+        
         titre: {
             type: String,
             required: [true, "Le titre est obligatoire"], // [true, "message d'erreur"]
