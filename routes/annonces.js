@@ -2,6 +2,8 @@ const express = require("express");
 const Annonce = require("../models/Annonce");
 const Mongoose = require("mongoose");
 const annonceRouter = express.Router();
+const multer = require("multer");
+const upload = multer();
 
 // READ ONE ANNONCE
 
@@ -32,10 +34,18 @@ annonceRouter.get("/:id", async (req, res) => {
 
 // CREATE ONE ANNONCE
 
-annonceRouter.post("/create", async (req, res) => {
+annonceRouter.post("/create", upload.none(), async (req, res) => {
     try {
-        const annonce = await Annonce.create(req.body);
-        return res.status(201).json(annonce);
+        const { titre, description, photo, latitude, longitude } = req.body;
+        const annonce = await Annonce.create({
+            titre,
+            description,
+            photo,
+            latitude,
+            longitude,
+        });
+        await annonce.save();
+        return res.status(201).send({ message: "Annonce created", annonce });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }

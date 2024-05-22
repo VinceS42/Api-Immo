@@ -1,10 +1,12 @@
 // Ce composant affiche la liste des annonces récupérées depuis une API.
+import { Button, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import { View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Pressable, Text } from "@gluestack-ui/themed";
 
 const Annonces = () => {
     const [annonces, setAnnonces] = useState([]);
+    const navigation = useNavigation();
 
     useEffect(() => {
         // Envoie une requête GET à l'API
@@ -17,16 +19,22 @@ const Annonces = () => {
         <View>
             {annonces.map((annonce) => (
                 <Pressable
-                    onPress={() => console.log(annonce._id)}
+                    key={annonce._id}
+                    onPress={() => {
+                        navigation.navigate("DetailAnnonce", {
+                            annonceId: annonce._id,
+                        });
+                    }}
                     p="$5"
                     bg="$primary500"
                     $hover-bg="$primary400"
                 >
-                    <Text key={annonce._id} color="white">
+                    <Text color="white">
                         {annonce.titre}
                     </Text>
                 </Pressable>
             ))}
+            <Button title="Ajouter une annonce" onPress={() => navigation.navigate('FormAjoutAnnonce')} />
         </View>
     );
 };

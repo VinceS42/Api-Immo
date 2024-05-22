@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
-import { GluestackUIProvider, Text, Box } from "@gluestack-ui/themed";
 import { config } from "@gluestack-ui/config";
-
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { GluestackUIProvider, Text, Box } from "@gluestack-ui/themed";
 
 import Annonces from "./components/Annonces";
+import DetailAnnonceScreen from "./components/DetailAnnonceScreen";
+import FormAjoutAnnonce from "./components/Form/FormAjoutAnnonce";
 
 const Stack = createStackNavigator();
 
@@ -14,7 +15,15 @@ export default function App() {
         <GluestackUIProvider config={config}>
             <NavigationContainer>
                 <Stack.Navigator>
-                    <Stack.Screen name="Annonce" component={Annonces} />                   
+                    <Stack.Screen name="Annonce" component={Annonces} />
+                    <Stack.Screen
+                        name="DetailAnnonce"
+                        component={DetailAnnonceScreen}
+                    />
+                    <Stack.Screen
+                        name="FormAjoutAnnonce"
+                        component={FormAjoutAnnonce}
+                    />
                 </Stack.Navigator>
             </NavigationContainer>
         </GluestackUIProvider>
